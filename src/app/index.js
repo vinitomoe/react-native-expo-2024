@@ -1,35 +1,54 @@
 import { StatusBar } from 'expo-status-bar';
-import { BackHandler, Button, StyleSheet, Text, View } from 'react-native';
+import { Alert, BackHandler, Button, StyleSheet, Text, View } from 'react-native';
 import { useAuth } from '../hooks/Auth/index';
 import { router } from 'expo-router';
+import { Ionicons } from '@expo/vector-icons';
 
 
 export default function App() {
   const {signIn, signOut } = useAuth();
+  const [ email,setEmail ] = useState("super@email.com");
+  const [password, setPassword ] = useState("A123456a!");
+  const [passwordVisibility, setPasswordVisibility] = useState(false);
 
+  const tooglePasswordVisibility = () => {
+    setPasswordVisibility(!passwordVisibility);
+  }
+ 
   const handleEntrarSuper = async () => {
     try {
-      await signIn({ email: "super@email.com", password: "Super123!" });
+      await signIn({ email, password });
+      router.replace("/"),
     } catch (error) {
-      console.log(e); 
+      Alert.alert("Erro", error.massage)
+      console.log(error); 
     }
   };
 
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Aplicativo Pronto para Usar</Text>
+      <View style={styles.inputbox}>
+        <Ionicons name="mail-open-outline" size={20} color="black"   />
+        <TextInput  style={styles.emailinput} 
+        placeholder="E-mail"
+         value={email}
+          onChageText={setEmail} 
+          />
+      </View>
+      <View style={styles.inputbox}>
+        <Ionicons name="lock-closed-outline" size={20} color="black"   />
+        <TextInput  style={styles.emailinput} 
+        placeholder="Senha"
+         value={password}
+          onChageText={setPassword} 
+          secureTextEntry={passwordVisibility}
+          />
+      <Ionicons name={passwordVisibility ? "eye-off-outline" : "eye-outline"} size={20} color="black"  onPress={tooglePasswordVisibility}  />
+      </View>
+     
 
-      <Button title='Signin Super' onPress={handleEntrarSuper} />
-
-      <Button title='Signin Adm'
-        onPress={() =>
-          signIn({ email: "adm@email.com", password: "Adm123!" })
-        } />
-
-      <Button title='Signin User'
-        onPress={() =>
-          signIn({ email: "user@email.com", password: "User123!" })
-        } />
+<Button style={styles.button}  title='Entrar' onPress={handleEntrarSuper} />
 
      <Button title="sobre " onPress={()=>router.push("/about")}/>
      <Button title="Sair do aplicativo" onPress={()=>BackHandler.exitApp()}/>
@@ -48,5 +67,20 @@ const styles = StyleSheet.create({
   title: {
     fontFamily: "bold",
     fontSize: 20,
+  },
+  inputbox: {
+       flexDirection:"row",
+       gap:10,
+       marginHorizontal: 40, 
+       marginVertical: 10,
+       alignItems: "center", 
+  },
+  emailinput: {
+    flex: 1 ,
+    fontFamily: "regular",
+    fontSize:20, 
+  },
+  button: {
+   width: "100%",
   },
 });

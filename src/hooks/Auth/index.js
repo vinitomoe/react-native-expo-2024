@@ -17,29 +17,24 @@ export function AuthProvider({ children }) {
     });
 
     const signIn = async ({ email, password }) => {
-        if (email === "super@email.com" && password === "Super123!") {
-            setUser({
-                autenticated: true,
-                user: { id: 1, name: "Super Usuário ", email, },
-                role: Role.SUPER
-            });
-        }
+         const response = await authUser({email, password});
 
-        if (email === "adm@email.com" && password === "Adm123!") {
+          if (!response){
             setUser({
-                autenticated: true,
-                used: { id: 1, name: "Administrador ", email, },
-                role: Role.ADM
+                autenticated: false,
+                user: null,
+                role: null,
             });
-        }
+            throw new Error("Usuário ou senha inválidos");
+          }
 
-        if (email === "user@email.com" && password === "User123!") {
-            setUser({
-                autenticated: true,
-                used: { id: 1, name: "Usuario Comum", email, },
-                role: Role.USER
-            });
-        }
+        console.log(response);
+
+          setUser({
+            autenticated: true,
+            user: response,
+            role: response.role
+        });
 
     };
 
