@@ -1,8 +1,9 @@
 import { StatusBar } from 'expo-status-bar';
-import { Alert, BackHandler, Button, StyleSheet, Text, View } from 'react-native';
-import { useAuth } from '../hooks/Auth/index';
+import { Alert, BackHandler, Button, StyleSheet, Text, TextInput, View } from 'react-native';
+import { useAuth } from '../hooks/Auth';
 import { router } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
+import { useState } from 'react';
 
 
 export default function App() {
@@ -18,7 +19,7 @@ export default function App() {
   const handleEntrarSuper = async () => {
     try {
       await signIn({ email, password });
-      router.replace("/"),
+      //router.replace("/"),
     } catch (error) {
       Alert.alert("Erro", error.massage)
       console.log(error); 
