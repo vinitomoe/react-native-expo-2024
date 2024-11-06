@@ -17,25 +17,13 @@ export function Banner() {
                 onPageSelected={onPageSelected}
             >
                 <View key="1" style={styles.page}>
-                <Image 
-                        source={ require("../../assets/img/pngegg (7).png") }
-                        style={styles.image} 
-                        resizeMode="contain"
-                    />
+                    <View style={styles.placeholder}></View>
                 </View>
                 <View key="2" style={styles.page}>
-                <Image 
-                    source={ require("../../assets/img/pngeggguincgo.png")} 
-                        style={styles.image} 
-                        resizeMode="contain"
-                    />
+                    <View style={styles.placeholder}></View>
                 </View>
                 <View key="3" style={styles.page}>
-                <Image 
-                       source={ require("../../assets/img/pngeggmartelete.png")} 
-                        style={styles.image} 
-                        resizeMode="contain"
-                    />
+                    <View style={styles.placeholder}></View>
                 </View>
             </PagerView>
             <View style={styles.bulletContent}>
@@ -50,7 +38,7 @@ export function Banner() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "#FFA500",
+        backgroundColor: "#E0F2F1",
     },
     content: {
         marginTop: 20,
@@ -59,7 +47,7 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         width: "100%",
         borderRadius: 10,
-        backgroundColor: "#fff",
+        backgroundColor: "#FFFFFF",
         shadowColor: "#000",
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.2,
@@ -69,7 +57,7 @@ const styles = StyleSheet.create({
     page: {
         justifyContent: "center",
         alignItems: "center",
-        backgroundColor: "#fff",
+        backgroundColor: "#FFFFFF",
         padding: 15,
     },
     bulletContent: {
@@ -83,20 +71,15 @@ const styles = StyleSheet.create({
         height: 12,
         borderRadius: 6,
         margin: 8,
-        backgroundColor: "#ccc",
+        backgroundColor: "#B0BEC5",
     },
     activeBullet: {
-        backgroundColor: "blue",
+        backgroundColor: "#4CAF50",
     },
-    text: {
-        fontSize: 22,
-        fontWeight: "bold",
-        color: "green",
-    },
-    image: {
-        width: 700,
-        height: 250,
-        marginBottom: 5,
-        backgroundColor: "#0066cc",
+    placeholder: {
+        width: 300,
+        height: 150,
+        backgroundColor: "#C8E6C9",
+        borderRadius: 10,
     },
 });

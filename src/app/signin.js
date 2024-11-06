@@ -28,38 +28,40 @@ export default function App() {
     <View style={styles.container}>
       <Text style={styles.title}>Aplicativo Pronto para Usar</Text>
       <View style={styles.inputbox}>
-        <Ionicons name="mail-open-outline" size={20} color="#1E90FF" />
+        <Ionicons name="mail-open-outline" size={20} color="#4CAF50" />
         <TextInput
           style={styles.emailinput}
           placeholder="E-mail"
           value={email}
           onChangeText={setEmail}
+          placeholderTextColor="#B0BEC5"
         />
       </View>
       <View style={styles.inputbox}>
-        <Ionicons name="lock-closed-outline" size={20} color="#1E90FF" />
+        <Ionicons name="lock-closed-outline" size={20} color="#4CAF50" />
         <TextInput
           style={styles.emailinput}
           placeholder="Senha"
           value={password}
           onChangeText={setPassword}
           secureTextEntry={passwordVisibility}
+          placeholderTextColor="#B0BEC5"
         />
         <Ionicons
           name={passwordVisibility ? "eye-off-outline" : "eye-outline"}
           size={20}
-          color="#1E90FF"
+          color="#4CAF50"
           onPress={togglePasswordVisibility}
         />
       </View>
 
-      <TouchableOpacity style={[styles.button, styles.buttonBorder]} onPress={handleSignIn}>
+      <TouchableOpacity style={styles.button} onPress={handleSignIn}>
         <Text style={styles.buttonText}>Entrar</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={[styles.button, styles.buttonBorder]} onPress={() => router.push("/about")}>
+      <TouchableOpacity style={styles.button} onPress={() => router.push("/about")}>
         <Text style={styles.buttonText}>Sobre</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={[styles.button, styles.buttonBorder]} onPress={() => BackHandler.exitApp()}>
+      <TouchableOpacity style={styles.button} onPress={() => BackHandler.exitApp()}>
         <Text style={styles.buttonText}>Sair do aplicativo</Text>
       </TouchableOpacity>
 
@@ -71,41 +73,49 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FFA500',
+    backgroundColor: '#E0F2F1',
     alignItems: 'center',
     justifyContent: 'center',
+    padding: 20,
   },
   title: {
-    fontFamily: "bold",
-    fontSize: 20,
-    color: '#1E90FF',
+    fontFamily: "sans-serif",
+    fontSize: 22,
+    color: '#2E7D32',
+    marginBottom: 30,
   },
   inputbox: {
     flexDirection: "row",
-    gap: 10,
-    marginHorizontal: 40,
+    backgroundColor: '#FFFFFF',
+    borderRadius: 8,
+    padding: 12,
     marginVertical: 10,
     alignItems: "center",
+    width: '100%',
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 5,
   },
   emailinput: {
     flex: 1,
-    fontFamily: "regular",
-    fontSize: 20,
-    color: '#1E90FF',
+    fontFamily: "sans-serif-light",
+    fontSize: 16,
+    color: '#2E7D32',
   },
   button: {
-    width: "80%",
-    paddingVertical: 10,
+    backgroundColor: '#4CAF50',
+    paddingVertical: 12,
+    paddingHorizontal: 30,
+    borderRadius: 8,
+    width: '100%',
     alignItems: 'center',
-    marginVertical: 5,
-  },
-  buttonBorder: {
-    borderColor: '#1E90FF',
-    borderWidth: 2,
-    borderRadius: 5,
+    marginVertical: 10,
   },
   buttonText: {
-    color: '#1E90FF',
-    fontSize: 18,
+    color: '#FFFFFF',
+    fontSize: 16,
+    fontFamily: "sans-serif-medium",
   },
 });
