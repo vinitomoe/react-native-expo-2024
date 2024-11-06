@@ -1,6 +1,6 @@
 import { useStoreRootState } from "expo-router/build/global-state/router-store";
 import { useEffect, useRef, useState } from "react";
-import { Button, KeyboardAvoidingView, Platform, StyleSheet, Text, TextInput, View } from "react-native";
+import { Alert, Button, KeyboardAvoidingView, Platform, StyleSheet, Text, TextInput, View } from "react-native";
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { Picker } from '@react-native-picker/picker';
 import DateTimePicker from '@react-native-community/datetimepicker'
@@ -14,6 +14,7 @@ const paymentsSchema = z.object({
   user_id: z.number().int().positive(),
   user_cadastro: z.number().int().positive(),
   data_pagamneto: z.date(),
+  numero_recibo: z.string(),
   observacao: z.string(),
 });
 
@@ -24,6 +25,7 @@ export default function Payment() {
   const [data, setData] = useState(new Date());
   const [viewCalendar, setViewCalendar] = useState(false);
   const [observacao, setObservacao] = useState("");
+  const [numeroRecibo, setNumeroRecibo] = useState("");
   const valueRef = useRef();
   const { user } = useAuth();
   const { createPayment } = usePaymentsDatabase();
@@ -88,6 +90,7 @@ export default function Payment() {
       user_cadastro: Number(user.user.id),
       valor_pago: convertValue(valor),
       data_pagamneto: date,
+      numero_recibo: numeroRecibo,
       observacao,
     };
 
@@ -99,8 +102,10 @@ export default function Payment() {
       setId(sugestoes[0].id);
       setData(new Date());
       setObservacao("");
+      setNumeroRecibo("");
       valueRef?.current?.focus();
     } catch (error) {
+      Alert.alert("Error",`Error ao inserir pagamento: ${error.massage}`);
       console.log(error);
     }
   };
@@ -117,6 +122,18 @@ export default function Payment() {
             value={valor}
             onChangeText={(newValou) => handleChangeValor(newValue)}
             ref={valueRef}
+          />
+
+        </View>
+        <View style={styles.inputView}>
+          <Ionicons name="cash-outline" size={24} color="blue" />
+          <TextInput 
+          placeholder="Número do Recibo"
+            keyboardType="decimal-pad"
+            style={styles.inputValor}
+            value={numeroRecibo}
+            onChangeText={setNumeroRecibo}
+            
           />
 
         </View>
