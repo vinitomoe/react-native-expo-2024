@@ -9,7 +9,7 @@ const StackLayout = () => {
 
      useEffect(() => {
 
-          if (!user?.autenticated) {
+          if (!user?.authenticated) {
                router.replace("signin")
               
                
