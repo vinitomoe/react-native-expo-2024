@@ -14,7 +14,7 @@ const StackLayout = () => {
               
                
           } else {
-                    router.push("(protected)");
+                    router.push("(protected)/list");
           }
      }, [user]);
 

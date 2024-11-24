@@ -16,7 +16,7 @@ export default function About() {
       <Text style={styles.text}>
         Este aplicativo é uma plataforma dedicada ao aluguel de máquinas pesadas. Com uma interface simples e intuitiva, ele conecta usuários a fornecedores de equipamentos, facilitando a locação para obras e projetos variados. O objetivo é oferecer uma experiência eficiente e segura para quem precisa de máquinas de qualidade sem complicações.
       </Text>
-      <Button title="Voltar" onPress={() => { router.replace("/") }} />
+      <Button title="Voltar"  onPress={() => { router.replace("signin") }}  />
     </View>
   );
 }
@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     padding: 20,
-    backgroundColor: "#FFA500",
+    backgroundColor: "#E0F2F1",
   },
   image: {
     width: 100,
@@ -38,14 +38,14 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 24,
     fontWeight: "bold",
-    color: "#1E90FF",
+    color: "#00796B",
     marginBottom: 10,
   },
   text: {
     fontSize: 16,
     textAlign: "center",
     marginBottom: 20,
-    color: "#1E90FF",
+    color: "#00796B",
     fontFamily: "monospace",
   },
 });
